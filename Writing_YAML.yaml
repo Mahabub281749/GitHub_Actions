@@ -1,0 +1,21 @@
+name: Mahabub
+age: 31
+address: Finland
+Post: "Espoo:02620"
+active: true
+key:
+   key1: value1
+   key2: value2
+   key3:
+       key4: value4
+       key5: value5
+array:
+    - value 6
+    - value 7
+    - {key6: value8}
+jsonarray: [item1, item2]
+objectsarray: 
+    - key7: value
+      key8: value
+    - key9: value
+      key10: value
