@@ -1,0 +1,21 @@
+name: Shell commands
+
+on: 
+  push:
+    branches: [ "master" ]
+
+jobs:
+  run-shell-commands:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: echo a string
+        run: echo "Hello World"
+      - name: multiline script
+        run: |
+          node -v
+          npm -v
+      - name: Python commands
+        run: import platform
+             print(python.processor())
+        shell: python
