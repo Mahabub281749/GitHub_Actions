@@ -1,4 +1,4 @@
-name: Shell commands
+name: Different Shell commands
 
 on: 
   push:
@@ -18,5 +18,5 @@ jobs:
       - name: Python commands
         run: |
           import platform
-          print(python.processor())
+          print(platform.processor())
         shell: python
