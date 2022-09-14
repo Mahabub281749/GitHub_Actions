@@ -1,6 +1,10 @@
 name: Trigger actions
 
-on: [push, pull_request]
+on: 
+  push:
+  pull_request:
+    types: [opened, closed, reopened]
+    
   
 
 jobs:
