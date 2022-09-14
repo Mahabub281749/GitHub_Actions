@@ -1,7 +1,9 @@
-name: Checkout actions
+name: Trigger actions
 
 on: 
   push:
+    branches: ["master"]
+  pull:
     branches: ["master"]
 
 jobs:
