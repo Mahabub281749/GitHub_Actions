@@ -8,7 +8,7 @@ key:
    key2: value2
    key3:
        key4: value45
-       key5: value5
+       key5: value55
 array:
     - value 6
     - value 7
