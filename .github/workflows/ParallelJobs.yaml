@@ -23,6 +23,7 @@ jobs:
 
   run-windows-command:
     runs-on: windows-latest
+    needs: ["run-shell-commands"]
     steps:
       - name: Power shell Directory
         run: Get-Location
