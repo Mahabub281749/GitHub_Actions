@@ -1,0 +1,38 @@
+name: Environment variable Workflow
+
+on: 
+  push:
+    branches:
+      - master
+
+env:
+  WF_ENV: Available to all jobs
+
+jobs:
+  ENV_VAR:
+    runs-on: ubuntu-latest
+    env:
+      JOBS_ENV: Available to all steps in this job
+    steps:
+      - name: Log ENV variable
+        env:
+          STEPS_ENV: Avaialble to this step only
+        run: |
+          echo "WF_ENV = ${WF_ENV}"
+          echo "JOBS_ENV = ${JOBS_ENV}"
+          echo "STEPS_ENV = ${STEPS_ENV}"
+
+      - name: Log ENV variable 2
+        run: |
+          echo "WF_ENV = ${WF_ENV}"
+          echo "JOBS_ENV = ${JOBS_ENV}"
+          echo "STEPS_ENV = ${STEPS_ENV}"
+
+  ENV_VAR_2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log ENV variable
+        run: |
+          echo "WF_ENV = ${WF_ENV}"
+          echo "JOBS_ENV = ${JOBS_ENV}"
+          echo "STEPS_ENV = ${STEPS_ENV}"
