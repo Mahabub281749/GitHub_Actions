@@ -1,0 +1,72 @@
+name: Github Token for Authentication
+
+on: 
+  push:
+    branches:
+      - master
+
+env:
+  WF_ENV: Available to all jobs
+
+jobs:
+
+  create_issue:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Push a random file
+        run: |
+          pwd
+          ls -a
+          git init
+          git remote add origin "https://$GITHUB.ACTOR:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
+          git config --global user.email "my-bot@bot.com"
+          git config --global user.name "my-bot"
+          git fetch
+          git checkout master
+          git branch --set-upstream-to=origin/master
+          git pull
+          ls -a
+          echo $RANDOM >> random.txt
+          ls -a
+          git add -a
+          git commit -m "Random File"
+          git push
+      - name: Create issue using REST API
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/issues \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "title": "Automated issue for commit: ${{ github.sha }}",
+            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
+            }' \
+          --fail
+
+  ENV_VAR:
+    runs-on: ubuntu-latest
+    env:
+      JOBS_ENV: Available to all steps in this job
+    steps:
+      - name: Log ENV variable
+        env:
+          STEPS_ENV: Avaialble to this step only
+        run: |
+          echo "WF_ENV = ${WF_ENV}"
+          echo "JOBS_ENV = ${JOBS_ENV}"
+          echo "STEPS_ENV = ${STEPS_ENV}"
+
+      - name: Log ENV variable 2
+        run: |
+          echo "WF_ENV = ${WF_ENV}"
+          echo "JOBS_ENV = ${JOBS_ENV}"
+          echo "STEPS_ENV = ${STEPS_ENV}"
+
+  ENV_VAR_2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log ENV variable
+        run: |
+          echo "WF_ENV = ${WF_ENV}"
+          echo "JOBS_ENV = ${JOBS_ENV}"
+          echo "STEPS_ENV = ${STEPS_ENV}"
