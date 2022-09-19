@@ -1,4 +1,4 @@
-name: Context testing
+name: Function testing
 on: push
 
 jobs:
