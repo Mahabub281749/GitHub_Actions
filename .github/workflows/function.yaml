@@ -1,0 +1,12 @@
+name: Context testing
+on: push
+
+jobs:
+  function:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dump
+        run: |
+          echo ${{contains('Hello', 'll'}}
+          echo ${{startswith('hello', 'he')}}
+  
