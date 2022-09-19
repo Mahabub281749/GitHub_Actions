@@ -13,11 +13,11 @@ on:
       - '!filename.js'
     #paths-ignore:
       #- 'docs/**'
-  schedule:
-    - cron: "0/5 * * * *"
-    - cron: "0/6 * * * *"
-  pull_request:
-    types: [opened, closed, reopened]
+  #schedule:
+   # - cron: "0/5 * * * *"
+    #- cron: "0/6 * * * *"
+  #pull_request:
+    #types: [opened, closed, reopened]
     
   
 
