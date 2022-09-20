@@ -1,4 +1,4 @@
-name: Strategy
+name: Include_Exclude
 on: push
 
 jobs:
